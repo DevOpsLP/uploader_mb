@@ -1,132 +1,19 @@
-import puppeteer from "puppeteer";
-import * as cheerio from "cheerio";
-
-function delay(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-export async function scrapeFashionNovaSizeChart(
-  handle: string
-): Promise<Array<Record<string, string>>> {
-  const url = `https://www.fashionnova.com/products/${handle}`;
-
-  const browser = await puppeteer.launch({
-    headless: true,
-    defaultViewport: {
-      width: 1366,
-      height: 768,
-    },
-  });
-
-  const page = await browser.newPage();
-
-  try {
-    console.log(`Navigating to: ${url}`);
-    await page.goto(url, { waitUntil: "networkidle2" });
-
-    // Attempt to click the close button if it exists
-    try {
-      const closeSelector = 'button[data-click="close"]';
-      if ((await page.$(closeSelector)) !== null) {
-        await page.click(closeSelector);
-        console.log("Clicked on the close button.");
-      }
-    } catch (error) {
-      console.error("Error clicking the close button:", error);
-    }
-
-    // Selector for the size chart button
-    const sizeChartButtonSelector = 'button[data-tag-event="e_viewSizeChart"]';
-
-    // Click the size chart button
-    try {
-      await page.waitForSelector(sizeChartButtonSelector, { visible: true });
-
-      const buttonClicked = await page.evaluate((selector) => {
-        const button = document.querySelector(selector) as HTMLElement;
-        if (button) {
-          button.click();
-          return true;
-        }
-        return false;
-      }, sizeChartButtonSelector);
-
-      if (buttonClicked) {
-        console.log("Size Chart Button Clicked");
-      } else {
-        console.error("Size Chart Button not found in the DOM");
-      }
-    } catch (error) {
-      console.error("Error clicking the size chart button:", error);
-      return [];
-    }
-
-    await delay(1000);
-
-    // Click the "Switch to centimeters" button
-    const switchToCmButtonSelector = 'button[aria-label="Switch to centimeters"]';
-    try {
-      await page.waitForSelector(switchToCmButtonSelector, { visible: true });
-      await page.click(switchToCmButtonSelector);
-      console.log('"Switch to centimeters" Button Clicked');
-    } catch (error) {
-      console.error('Error clicking the "Switch to centimeters" button:', error);
-      return [];
-    }
-
-    // Selector for the size guide table
-    const sizeGuideTableSelector = "div.overflow-x-auto.size-guide-scrollbar table";
-
-    // Wait for the table to load
-    await page.waitForSelector(sizeGuideTableSelector, { visible: true });
-
-    // Extract the HTML content of the table
-    const htmlContent = await page.$eval(sizeGuideTableSelector, (el) => el.outerHTML);
-
-    // Parse the HTML with Cheerio
-    const $ = cheerio.load(htmlContent);
-
-    let headers: string[] = [];
-    const size_chart: Array<Record<string, string>> = [];
-
-    // Mapping English headers to Spanish
-    const keyMapping: Record<string, string> = {
-      Size: "Talla",
-      Waist: "Cintura",
-      Hips: "Caderas",
-    };
-
-    // Extract table headers
-    $("tbody > tr:first-child")
-      .find("td")
-      .each((_, elem) => {
-        const header = $(elem).text().trim();
-        headers.push(keyMapping[header] || header); // Translate headers if a mapping exists
-      });
-
-    // Extract table rows (excluding header row)
-    $("tbody > tr").each((rowIndex, rowElem) => {
-      if (rowIndex === 0) return; // Skip the header row
-
-      let sizeObject: Record<string, string> = {};
-      $(rowElem)
-        .find("td")
-        .each((colIndex, colElem) => {
-          const key = headers[colIndex];
-          const value = $(colElem).text().trim();
-          sizeObject[key] = value;
-        });
-
-      size_chart.push(sizeObject);
-    });
-
-    console.log("Extracted size_chart:", size_chart);
-
-    return size_chart;
-  } catch (error) {
-    console.error("Error during scraping:", error);
-    return [];
-  } finally {
-    await browser.close();
-  }
-}
+fetch("https://xn5vepvd4i-1.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.24.0)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.73.4)%3B%20react%20(18.3.1)%3B%20react-instantsearch%20(7.12.4)%3B%20react-instantsearch-core%20(7.12.4)%3B%20JS%20Helper%20(3.22.3)&x-algolia-api-key=188b909286594fc5b7adadce2548c56e&x-algolia-application-id=XN5VEPVD4I", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "cache-control": "no-cache",
+    "content-type": "application/x-www-form-urlencoded",
+    "pragma": "no-cache",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "Referer": "https://www.fashionnova.com/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": "{\"requests\":[{\"indexName\":\"products\",\"params\":\"ruleContexts=%5B%22collection%22%2C%22maxi-dresses%22%5D&analyticsTags=%5B%22collection%22%2C%22maxi-dresses%22%2C%22desktop%22%5D&facets=%5B%22tags%22%2C%22product_type%22%2C%22inventory_available%22%2C%22price_range%22%2C%22named_tags.color%22%2C%22named_tags.occasion%22%2C%22named_tags.bottom_style%22%2C%22named_tags.sleeve%22%2C%22named_tags.fabric%22%2C%22named_tags.neckline%22%2C%22named_tags.detail%22%2C%22named_tags.print%22%2C%22options.size%22%5D&facetFilters=%5B%5B%22price_range%3A10%3A25%22%2C%22price_range%3A0%3A10%22%5D%5D&filters=available_markets%3Aus%20AND%20collections%3Amaxi-dresses%20AND%20any_variant_inventory_available%3Atrue&distinct=1&hitsPerPage=0&facetingAfterDistinct=false&maxValuesPerFacet=1000\"},{\"indexName\":\"products\",\"params\":\"ruleContexts=%5B%22collection%22%2C%22maxi-dresses%22%5D&analyticsTags=%5B%22collection%22%2C%22maxi-dresses%22%2C%22desktop%22%5D&filters=available_markets%3Aus%20AND%20collections%3Amaxi-dresses%20AND%20any_variant_inventory_available%3Atrue%20AND%20inventory_available%3Atrue&facetFilters=%5B%5D&distinct=0&hitsPerPage=0&facetingAfterDistinct=false&facets=%5B%22price_range%22%5D&maxValuesPerFacet=1000\"}]}",
+  "method": "POST"
+}).then(async res =>await console.log(res.json()));

@@ -78,15 +78,16 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     }
     
     if (priceRangeParam) {
-      // e.g. "10%3A25" => decode => "10:25"
-      const decodedPrice = decodeURIComponent(priceRangeParam);
-      facetFilters.push([`price_range:${decodedPrice}`]);
+      // Decode "10%3A25,0%3A10" => "10:25,0:10"
+      const decodedPrices = decodeURIComponent(priceRangeParam).split(",");
+      // Map them into ["price_range:10:25", "price_range:0:10"]
+      const priceFilters = decodedPrices.map((price) => `price_range:${price}`);
+      facetFilters.push(priceFilters);
     }
   
     // Encode the facetFilters back into a URL-safe string
     // e.g. '%5B%5B%22all_sizes_in_stock_array%3AM%22%2C%22all_sizes_in_stock_array%3AL%22%5D%2C%5B%22price_range%3A10%3A25%22%5D%5D'
     const facetFiltersStr = encodeURIComponent(JSON.stringify(facetFilters));
-  
     // Now build the `params` string for the first request:
     // Insert facetFiltersStr where your facetFilters go, 
     // plus dynamic `collectionName` in the rest of the query.
