@@ -9,6 +9,7 @@ export async function scrapeFashionNovaSizeChart(
 
   const browser = await puppeteer.launch({
     headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
     defaultViewport: {
       width: 1366,
       height: 768,
