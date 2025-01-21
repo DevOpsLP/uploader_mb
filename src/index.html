@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Loader Overlay (hidden by default) */
+    #loaderOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+      z-index: 1050; /* Higher than Bootstrap modals */
+      justify-content: center;
+      align-items: center;
+      visibility: hidden; /* Hidden by default */
+      opacity: 0; /* Fully transparent */
+      transition: visibility 0s, opacity 0.3s ease-in-out; /* Smooth transition */
+    }
+
+    .loader {
+      --s: 25px;
+      --g: 5px;
+      width: calc(2 * (1.353 * var(--s) + var(--g)));
+      aspect-ratio: 1;
+      background:
+        linear-gradient(#ff1818 0 0) left / 50% 100% no-repeat,
+        conic-gradient(from -90deg at var(--s) calc(0.353 * var(--s)),
+          #fff 135deg, #666 0 270deg, #aaa 0);
+      background-blend-mode: multiply;
+      --_m:
+        linear-gradient(to bottom right,
+          #0000 calc(0.25 * var(--s)), #000 0 calc(100% - calc(0.25 * var(--s)) - 1.414 * var(--g)), #0000 0),
+        conic-gradient(from -90deg at right var(--g) bottom var(--g), #000 90deg, #0000 0);
+      -webkit-mask: var(--_m);
+              mask: var(--_m);
+      background-size: 50% 50%;
+      -webkit-mask-size: 50% 50%;
+              mask-size: 50% 50%;
+      -webkit-mask-composite: source-in;
+              mask-composite: intersect;
+      animation: l9 1.5s infinite;
+    }
+
+    @keyframes l9 {
+      0%, 12.5% {
+        background-position: 0% 0%, 0 0;
+      }
+      12.6%, 37.5% {
+        background-position: 100% 0%, 0 0;
+      }
+      37.6%, 62.5% {
+        background-position: 100% 100%, 0 0;
+      }
+      62.6%, 87.5% {
+        background-position: 0% 100%, 0 0;
+      }
+      87.6%, 100% {
+        background-position: 0% 0%, 0 0;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+  <!-- Loader Overlay (hidden by default) -->
+  <div id="loaderOverlay" class="d-flex">
+    <div class="loader"></div>
+  </div>
+
+  <form id="mainForm" class="bg-white p-4 rounded shadow-sm w-100" style="max-width: 600px;">
+    <h1 class="text-primary text-center mb-4">Main Page</h1>
+
+    <!-- Tienda Dropdown -->
+    <div class="mb-3">
+      <label for="tienda" class="form-label">Select Tienda:</label>
+      <select id="tienda" name="tienda" class="form-select" required>
+        <option value="MUYBONITA">MUY BONITA</option>
+        <option value="MISBEBES">MIS BEBES</option>
+        <option value="BOLUDOS">BOLUDOS</option>
+        <option value="HOGAR">HOGAR</option>
+      </select>
+    </div>
+
+    <!-- URL and Page Dropdown Row -->
+    <div class="row g-3 mb-3">
+      <div class="col-md-8">
+        <label for="url" class="form-label">URL:</label>
+        <input type="text" id="url" name="url" class="form-control" required>
+      </div>
+      <div class="col-md-4">
+        <label for="page" class="form-label">Page:</label>
+        <select id="page" name="page" class="form-select">
+          <script>
+            document.write([...Array(10).keys()].map(i => `<option value="${i + 1}">${i + 1}</option>`).join(""));
+          </script>
+        </select>
+      </div>
+    </div>
+
+    <!-- Colección -->
+    <div class="mb-3">
+      <label for="coleccion" class="form-label">Colección:</label>
+      <input type="text" id="coleccion" name="coleccion" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="coleccion2" class="form-label">Colección 2 (Opcional):</label>
+      <input type="text" id="coleccion2" name="coleccion2" class="form-control">
+    </div>
+
+    <!-- COP-USD and Ganancia -->
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label for="copUsd" class="form-label">COP-USD:</label>
+        <input type="number" id="copUsd" name="copUsd" class="form-control" value="4200" step="0.01" readonly>
+      </div>
+      <div class="col-md-6">
+        <label for="ganancia" class="form-label">Ganancia %:</label>
+        <input type="number" id="ganancia" name="ganancia" class="form-control" value="120" step="0.01" readonly>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" id="submitButton" class="btn btn-primary w-100">Submit</button>
+  </form>
+
+  <!-- Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="successModalLabel">Success</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="successMessage">
+          <!-- Success message will be injected here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="errorMessage">
+          <!-- Error message will be injected here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('mainForm').addEventListener('submit', async function (e) {
+      e.preventDefault(); // Prevent default form submission
+    
+      const submitButton = document.getElementById('submitButton');
+      const loaderOverlay = document.getElementById('loaderOverlay');
+    
+      // Disable the submit button and show the loader overlay
+      submitButton.disabled = true;
+      loaderOverlay.style.visibility = 'visible';
+      loaderOverlay.style.opacity = '1';
+    
+      const formData = new FormData(e.target); // Gather form inputs
+    
+      // Construct URL-encoded string from FormData
+      const params = new URLSearchParams();
+      formData.forEach((value, key) => params.append(key, value));
+    
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
+        });
+    
+        const contentType = response.headers.get('Content-Type');
+        const result = contentType && contentType.includes('application/json') 
+          ? await response.json() 
+          : await response.text();
+    
+        if (!response.ok) {
+          throw new Error(result.error || result || 'Unknown error occurred');
+        }
+    
+        // Update success modal with the result message
+        document.getElementById('successMessage').textContent = result.message || 'Form submitted successfully!';
+        new bootstrap.Modal(document.getElementById('successModal')).show();
+      } catch (error) {
+        // Update error modal with the error message
+        document.getElementById('errorMessage').textContent = error.message || 'An error occurred while submitting the form.';
+        new bootstrap.Modal(document.getElementById('errorModal')).show();
+      } finally {
+        // Re-enable the submit button and hide the loader overlay
+        submitButton.disabled = false;
+        loaderOverlay.style.visibility = 'hidden';
+        loaderOverlay.style.opacity = '0';
+      }
+    });
+  </script>
+</body>
+
+</html>

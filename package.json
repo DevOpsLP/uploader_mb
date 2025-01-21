@@ -1,0 +1,30 @@
+{
+  "name": "uploader_mb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "test": "ts-node src/test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "express": "^4.21.2",
+    "playwright": "^1.49.1",
+    "puppeteer": "^24.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "@types/puppeteer": "^5.4.7",
+    "dotenv": "^16.4.7"
+  }
+}

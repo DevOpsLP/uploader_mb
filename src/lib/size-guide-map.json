@@ -1,0 +1,79 @@
+[
+    {
+        "modalTitle": "Tops & Dresses Size Guide",
+        "translationKey": "products.product_size_guides.tops_and_dresses_size_guide",
+        "sizeRule": "Tops,Jackets,Sweaters,Dresses,Rompers,Jumpsuits,Matching Sets",
+        "handle": "sizeguide-women-tops-dresses",
+        "division": "women"
+    },
+    {
+        "modalTitle": "Jeans & Bottoms Size Guide",
+        "translationKey": "products.product_size_guides.jeans_and_bottoms_size_guide",
+        "sizeRule": "Bottoms,Jeans",
+        "handle": "sizeguide-women-bottoms-skirts",
+        "division": "women"
+    },
+    {
+        "modalTitle": "Women's Shoes Size Guide",
+        "translationKey": "products.product_size_guides.womens_shoes_size_guide",
+        "sizeRule": "Shoes",
+        "handle": "sizeguide-women-shoes-boots",
+        "division": "women"
+    },
+    {
+        "modalTitle": "Swimwear & Lingerie Size Guide",
+        "translationKey": "products.product_size_guides.swimwear_and_lingerie_size_guide",
+        "sizeRule": "Intimates,Swim",
+        "handle": "sizeguide-women-swimwear-lingerie",
+        "division": "women"
+    },
+    {
+        "modalTitle": "Men's Bottoms Size Guide",
+        "translationKey": "products.product_size_guides.mens_bottoms_size_guide",
+        "sizeRule": "Mens Bottoms",
+        "handle": "sizeguide-men-bottoms",
+        "division": "mens"
+    },
+    {
+        "modalTitle": "Men's Shirts Size Guide",
+        "translationKey": "products.product_size_guides.mens_shirts_size_guide",
+        "sizeRule": "Mens Graphics,Mens Shirts,Mens Tees and Tanks,Tanks/Sleeveless,Mens Polo",
+        "handle": "sizeguide-men-shirts",
+        "division": "mens"
+    },
+    {
+        "modalTitle": "Men's Tops Size Guide",
+        "translationKey": "products.product_size_guides.mens_tops_size_guide",
+        "sizeRule": "Mens Tops, Mens Jackets",
+        "handle": "sizeguide-men-tops",
+        "division": "mens"
+    },
+    {
+        "modalTitle": "Men's Jeans Size Guide",
+        "translationKey": "products.product_size_guides.mens_jeans_size_guide",
+        "sizeRule": "Mens Denim",
+        "handle": "sizeguide-men-jeans",
+        "division": "mens"
+    },
+    {
+        "modalTitle": "Curve Size Guide",
+        "translationKey": "products.product_size_guides.curve_size_guide",
+        "sizeRule": "Plus",
+        "handle": "sizeguide-women-plus",
+        "division": "curves"
+    },
+    {
+        "modalTitle": "Kids Clothing Size Guide",
+        "translationKey": "products.product_size_guides.kids_clothing_size_guide",
+        "sizeRule": "Boys+Clothing, Girls+Clothing",
+        "handle": "sizeguide-kids-clothing",
+        "division": "kids"
+    },
+    {
+        "modalTitle": "Kids Shoes Size Guide",
+        "translationKey": "products.product_size_guides.kids_shoes_size_guide",
+        "sizeRule": "Boys+shoesaccessories, Girls+shoesaccessories",
+        "handle": "sizeguide-kids-shoes-boots",
+        "division": "kids"
+    }
+]

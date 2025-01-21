@@ -1,0 +1,848 @@
+{
+  "results": [
+    {
+      "hits": [
+        {
+          "title": "Tyson Jogger - Black",
+          "meta": {
+            "global": {
+              "all_sizes": "XS  |  S  |  M  |  L  |  XL  |  XXL  |  XXXL"
+            },
+            "linked_products": {
+              "swatches": "tyson-jogger-black:#000000:28053:Black,tyson-jogger-burgundy:#870f11:2240:Burgundy,tyson-jogger-charcoal:#4b4746:1063:Charcoal,tyson-jogger-chocolate:#8B4513:203:Chocolate,tyson-jogger-heatheredgrey:#bebcbd:7522:HeatherGrey,tyson-jogger-navy:#182373:3019:Navy,tyson-jogger-olive:#6f743c:4126:Olive,tyson-jogger-red:#FF0000:4411:Red,tyson-jogger-tan:#D2B48C:3790:Tan,tyson-jogger-white:#FFFFFF:971:White,tyson-jogger-yellow:#f2f180:1212:Yellow"
+            }
+          },
+          "handle": "tyson-jogger-black",
+          "product_type": "Mens Pants",
+          "template_suffix": "",
+          "id": 91870789649,
+          "tags": [
+            "Best Sellers 2023",
+            "Bottoms",
+            "ColorFam-Black",
+            "dadandme",
+            "familysquadgoals",
+            "includedinpromo",
+            "menbestsellers",
+            "Mens",
+            "Mens Activewear",
+            "Mens Bottoms",
+            "Mens Essentials",
+            "Mens Jogger",
+            "Mens Long Pants",
+            "Mens Loungewear",
+            "Mens Pants",
+            "Mens Plus",
+            "mensfleecebottoms",
+            "menstrendcollection",
+            "Most Wanted",
+            "New Arrivals",
+            "New Today",
+            "Nova Men",
+            "novadeal",
+            "NOVAMENCLICKS",
+            "novamenessentials",
+            "Plus",
+            "REGPRICE",
+            "TwoPieceSets",
+            "YGroup_NMKB10218"
+          ],
+          "option_names": [
+            "size"
+          ],
+          "variants_min_price": 12,
+          "variants_max_price": 12,
+          "product_image": "https://cdn.shopify.com/s/files/1/0293/9277/files/02-05-24_S7_71_NMKB10218_Black_P_KT_DJ_-Collection_14-17-52_31691_SG.jpg?v=1730220596",
+          "body_html_safe": " \n Model Height: 6'1 - Waist: 32 - Wearing Large \n Big &amp; Tall: Height 6'3 - Waist: 42 - Wearing XXXL \n Available In Black, Grey, White, Navy, And Red \n 60% Cotton, 40% Polyester \n Disclaimer: Due To The Specialized Distressing &amp; Wash Process, Each Garment Is Unique. \n Elastic Waist With Drawstring \n Side Hand Pockets \n Back Patch Pocket \n Ribbed Cuff At Bottom Of Leg \n Imported \n   \r\n California Proposition 65\r\n  WARNING: Cancer and Reproductive Harm - www.P65Warnings.ca.gov. ",
+          "collections": [
+            "high-inventory-new",
+            "mens",
+            "mens-bottoms",
+            "mens-essentials",
+            "all",
+            "testing",
+            "mens-new-arrivals-rev",
+            "mens-plus",
+            "mens-activewear",
+            "all-mens-products",
+            "mens-plus-rev",
+            "mens-best-sellers",
+            "mens-active-joggers",
+            "mens-plus-bottoms",
+            "mens-plus-active",
+            "mens-essential-bottoms",
+            "all-except-gc",
+            "mens-pants-1",
+            "mens-regular-price",
+            "bogo-bottoms-app",
+            "plus-size-bottoms-bogo-app",
+            "mens-active-bogo-app",
+            "mens-bottoms-bogo-app",
+            "includedinpromo",
+            "testing-isp",
+            "reg-price-only",
+            "mens-two-piece-sets",
+            "love-your-fn-body",
+            "promoexcludingbeauty",
+            "mens-joggers",
+            "mens-fleece-sets",
+            "mens-12-nova-men-essentials",
+            "mens-nova-mens-essentials",
+            "mens-15-nova-men-essentials",
+            "mens-nova-mens-essentials-pants-joggers",
+            "mens-best-selling-essentials",
+            "mens-best-selling-bottoms",
+            "mens-back-in-stock-activewear",
+            "mens-back-in-stock-bottoms",
+            "mens-fleece-bottoms",
+            "kids-dad-and-me",
+            "mens-nova-deals",
+            "mens-new-in-essentials",
+            "nova-deals-collection",
+            "all-mens-products-for-novamen-ig-shop-dont-touch",
+            "mens-pants-joggers-starting-at-18",
+            "mens-20-under-deals",
+            "mens-tyson-hoodies-sweats",
+            "mens-essential-fleece",
+            "mens-essential-matching-sets",
+            "mens-sweatshirts-sweats",
+            "mens-essentials-plus",
+            "mens-fleece-matching-sets",
+            "mens-plus-pants",
+            "mens-plus-best-sellers",
+            "mens-plus-fleece-bottoms"
+          ],
+          "collection_ids": [
+            180683076,
+            3270672401,
+            3271163921,
+            3281813521,
+            3283976209,
+            57077170300,
+            57077203068,
+            57077235836,
+            57077989500,
+            57079660668,
+            57082347644,
+            57082577020,
+            57085427836,
+            57088770172,
+            57088835708,
+            57089228924,
+            57096831100,
+            57099976828,
+            57100238972,
+            57106399356,
+            57106563196,
+            57106661500,
+            57106727036,
+            57110921340,
+            57111314556,
+            57112199292,
+            57113215100,
+            57113903228,
+            57118163068,
+            260395139196,
+            260398776444,
+            260399792252,
+            260399956092,
+            260400251004,
+            260407820412,
+            260408246396,
+            260408344700,
+            260408737916,
+            260408803452,
+            260412768380,
+            260416635004,
+            260427907196,
+            260428464252,
+            260428759164,
+            260446748796,
+            260456906876,
+            260457201788,
+            260457758844,
+            260459397244,
+            260460413052,
+            260463329404,
+            260473716860,
+            260475224188,
+            260475355260,
+            260475879548,
+            260477321340
+          ],
+          "sku": "NMKB10218_Black_XS",
+          "barcode": null,
+          "option1": "XS",
+          "option2": null,
+          "option3": null,
+          "position": 1,
+          "requires_shipping": true,
+          "taxable": true,
+          "inventory_management": "shopify",
+          "inventory_policy": "deny",
+          "variant_title": "XS",
+          "options": {
+            "size": "XS"
+          },
+          "price": 12,
+          "compare_at_price": 34.99,
+          "price_ratio": 0.3429551300371534,
+          "price_range": "10:25",
+          "image": "https://cdn.shopify.com/s/files/1/0293/9277/files/02-05-24_S7_71_NMKB10218_Black_P_KT_DJ_-Collection_14-17-52_31691_SG.jpg?v=1730220596",
+          "named_tags": {
+            "category": [
+              "Matching Sets",
+              "Pants",
+              "Sweatpants"
+            ],
+            "category_es": [
+              "Conjuntos Coordinados",
+              "Pantalones",
+              "Pantalones De Chándal"
+            ],
+            "category_group": [
+              "Bottoms",
+              "Sweatshirts & Sweats"
+            ],
+            "category_group_es": "Sudaderas Y Suéteres",
+            "color": "Black",
+            "color_fam": "Black",
+            "deals": "Shop Deals",
+            "default_collection_id": "260395139196",
+            "detail": "Drawstring",
+            "detail_es": "Cordón De Ajuste",
+            "fabric": "Fleece",
+            "print": "Solid",
+            "print_es": "Estampado Sólido",
+            "product_group": "Tyson",
+            "trend": "Everyday Essentials"
+          },
+          "named_tags_names": [
+            "category",
+            "category_es",
+            "category_group",
+            "category_group_es",
+            "color",
+            "color_fam",
+            "deals",
+            "default_collection_id",
+            "detail",
+            "detail_es",
+            "fabric",
+            "print",
+            "print_es",
+            "product_group",
+            "trend"
+          ],
+          "all_sizes": "XS | S | M | L | XL | XXL | XXXL",
+          "all_sizes_array": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL",
+            "XXXL"
+          ],
+          "all_sizes_in_stock": false,
+          "all_sizes_in_stock_array": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL",
+            "XXXL"
+          ],
+          "any_variant_inventory_available": true,
+          "dataOpsNewInRanking": 1,
+          "dataOpsSaleRanking": 1,
+          "dataOpsSalesRanking": 14,
+          "product_image_plus": "https://cdn.shopify.com/s/files/1/0293/9277/products/08-07-20Studio1_RM_DJ_10-12-44_43_NMKB10218_Black__PLUS3_RA.jpg?v=1707860636",
+          "variants_compare_at_price_min": 34.99,
+          "variants_compare_at_price_max": 34.99,
+          "dataOps3HrUnitSales": 52,
+          "dataOpsSaleCollectionRanking": 100000,
+          "available_markets": [
+            "cz",
+            "kr",
+            "is",
+            "il",
+            "hk",
+            "ae",
+            "no",
+            "jp",
+            "ng",
+            "ch",
+            "za",
+            "ao",
+            "al",
+            "dk",
+            "ky",
+            "sg",
+            "eu",
+            "ru",
+            "ca",
+            "au",
+            "my",
+            "nz",
+            "gb",
+            "do",
+            "us",
+            "qa",
+            "pl",
+            "mz",
+            "se",
+            "ph",
+            "cl",
+            "ro",
+            "mx",
+            "pe",
+            "international",
+            "sc",
+            "sa",
+            "hu"
+          ],
+          "product_image_trending": "https://cdn.shopify.com/s/files/1/0293/9277/files/02-05-24_S7_71_NMKB10218_Black_P_KT_DJ_-Collection_14-17-52_31691_SG.jpg?v=1730220596",
+          "product_image_plus_trending": "",
+          "product_video": null,
+          "title_es": "Pantalón Jogger Tyson - Negro",
+          "objectID": "723748683793",
+          "_highlightResult": {
+            "title": {
+              "value": "Tyson Jogger - Black",
+              "matchLevel": "none",
+              "matchedWords": []
+            },
+            "handle": {
+              "value": "tyson-jogger-black",
+              "matchLevel": "none",
+              "matchedWords": []
+            },
+            "product_type": {
+              "value": "Mens Pants",
+              "matchLevel": "none",
+              "matchedWords": []
+            },
+            "id": {
+              "value": "91870789649",
+              "matchLevel": "none",
+              "matchedWords": []
+            },
+            "tags": [
+              {
+                "value": "Best Sellers 2023",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "ColorFam-Black",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "dadandme",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "familysquadgoals",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "includedinpromo",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "menbestsellers",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Activewear",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Jogger",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Long Pants",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Loungewear",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Pants",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Mens Plus",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mensfleecebottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "menstrendcollection",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Most Wanted",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "New Arrivals",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "New Today",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Nova Men",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "novadeal",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "NOVAMENCLICKS",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "novamenessentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "Plus",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "REGPRICE",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "TwoPieceSets",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "YGroup_NMKB10218",
+                "matchLevel": "none",
+                "matchedWords": []
+              }
+            ],
+            "collections": [
+              {
+                "value": "high-inventory-new",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "all",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "testing",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-new-arrivals-rev",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-activewear",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "all-mens-products",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus-rev",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-best-sellers",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-active-joggers",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus-active",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-essential-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "all-except-gc",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-pants-1",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-regular-price",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "bogo-bottoms-app",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "plus-size-bottoms-bogo-app",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-active-bogo-app",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-bottoms-bogo-app",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "includedinpromo",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "testing-isp",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "reg-price-only",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-two-piece-sets",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "love-your-fn-body",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "promoexcludingbeauty",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-joggers",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-fleece-sets",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-12-nova-men-essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-nova-mens-essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-15-nova-men-essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-nova-mens-essentials-pants-joggers",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-best-selling-essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-best-selling-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-back-in-stock-activewear",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-back-in-stock-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-fleece-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "kids-dad-and-me",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-nova-deals",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-new-in-essentials",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "nova-deals-collection",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "all-mens-products-for-novamen-ig-shop-dont-touch",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-pants-joggers-starting-at-18",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-20-under-deals",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-tyson-hoodies-sweats",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-essential-fleece",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-essential-matching-sets",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-sweatshirts-sweats",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-essentials-plus",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-fleece-matching-sets",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus-pants",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus-best-sellers",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              {
+                "value": "mens-plus-fleece-bottoms",
+                "matchLevel": "none",
+                "matchedWords": []
+              }
+            ],
+            "named_tags": {
+              "category": [
+                {
+                  "value": "Matching Sets",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                },
+                {
+                  "value": "Pants",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                },
+                {
+                  "value": "Sweatpants",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                }
+              ],
+              "category_es": [
+                {
+                  "value": "Conjuntos Coordinados",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                },
+                {
+                  "value": "Pantalones",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                },
+                {
+                  "value": "Pantalones De Chándal",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                }
+              ],
+              "category_group": [
+                {
+                  "value": "Bottoms",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                },
+                {
+                  "value": "Sweatshirts & Sweats",
+                  "matchLevel": "none",
+                  "matchedWords": []
+                }
+              ],
+              "category_group_es": {
+                "value": "Sudaderas Y Suéteres",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              "color": {
+                "value": "Black",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              "detail": {
+                "value": "Drawstring",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              "detail_es": {
+                "value": "Cordón De Ajuste",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              "fabric": {
+                "value": "Fleece",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              "print": {
+                "value": "Solid",
+                "matchLevel": "none",
+                "matchedWords": []
+              },
+              "print_es": {
+                "value": "Estampado Sólido",
+                "matchLevel": "none",
+                "matchedWords": []
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
