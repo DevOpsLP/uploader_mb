@@ -45,104 +45,108 @@ export async function fetchShopifyCollection(queryString: string, body: string):
 }
 
 export function createAlgoliaFetchParams(urlStr: string, page: number) {
-    // Our static query parameters:
-    const queryString = 
-      "x-algolia-agent=Algolia%20for%20JavaScript%20(4.24.0)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.73.4)%3B%20react%20(18.3.1)%3B%20react-instantsearch%20(7.12.4)%3B%20react-instantsearch-core%20(7.12.4)%3B%20JS%20Helper%20(3.22.3)"
-      + "&x-algolia-api-key=188b909286594fc5b7adadce2548c56e"
-      + "&x-algolia-application-id=XN5VEPVD4I";
-  
-    // Parse the input URL
-    const urlObj = new URL(urlStr);
-  
-    // Extract path parts (e.g., "/collections/mens-jeans" => ["collections","mens-jeans"])
-    const pathParts = urlObj.pathname.split("/").filter(Boolean);
-    // For example, if pathParts = ["collections","mens-pants-1"], 
-    // then collectionName is "mens-pants-1"
-    const collectionName = pathParts[1] || "mens-jeans";
-  
-    // Grab any query params we need:
-    // e.g. "M%2CL%2CXXL" => decode => "M,L,XXL" => split => ["M","L","XXL"]
-    const sizesParam = urlObj.searchParams.get("all_sizes_in_stock_array");
-    const priceRangeParam = urlObj.searchParams.get("price_range");
-  
-    // Build the facetFilters array based on whether these exist:
-    // e.g. [ ["all_sizes_in_stock_array:M", "all_sizes_in_stock_array:L"], ["price_range:10:25"] ]
-    const facetFilters = [];
-    
-    if (sizesParam) {
-      // Convert "M%2CL%2CXXL" to ["M","L","XXL"]
-      const decodedSizes = decodeURIComponent(sizesParam).split(",");
-      // Map them into "all_sizes_in_stock_array:SIZE"
-      const sizeFilters = decodedSizes.map(size => `all_sizes_in_stock_array:${size}`);
-      facetFilters.push(sizeFilters);
+  // Our static query parameters:
+  const queryString =
+    "x-algolia-agent=Algolia%20for%20JavaScript%20(4.24.0)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.73.4)%3B%20react%20(18.3.1)%3B%20react-instantsearch%20(7.12.4)%3B%20react-instantsearch-core%20(7.12.4)%3B%20JS%20Helper%20(3.22.3)"
+    + "&x-algolia-api-key=188b909286594fc5b7adadce2548c56e"
+    + "&x-algolia-application-id=XN5VEPVD4I";
+
+  // Parse the input URL
+  const urlObj = new URL(urlStr);
+
+  // Extract path parts (e.g., "/collections/mens-jeans" => ["collections","mens-jeans"])
+  const pathParts = urlObj.pathname.split("/").filter(Boolean);
+  // For example, if pathParts = ["collections","mens-pants-1"], 
+  // then collectionName is "mens-pants-1"
+  const collectionName = pathParts[1] || "mens-jeans";
+
+  // We'll store the search query (if any) separately
+  let searchQuery = "";
+
+  // We'll build facetFilters from *all* query params except “query”, etc.
+  // e.g. ?named_tags.occasion=Office%2CHoliday%20Party => 
+  //   [ ["named_tags.occasion:Office", "named_tags.occasion:Holiday Party"] ]
+  const facetFilters: string[][] = [];
+
+  // Iterate over all query params
+  for (const [key, value] of urlObj.searchParams.entries()) {
+    if (key === "query") {
+      // This is the search term
+      searchQuery = decodeURIComponent(value);
+      continue;
     }
-    
-    if (priceRangeParam) {
-      // Decode "10%3A25,0%3A10" => "10:25,0:10"
-      const decodedPrices = decodeURIComponent(priceRangeParam).split(",");
-      // Map them into ["price_range:10:25", "price_range:0:10"]
-      const priceFilters = decodedPrices.map((price) => `price_range:${price}`);
-      facetFilters.push(priceFilters);
+    // If you want to skip certain param keys entirely, you can do so here:
+    // if (key === "page" || key === "collections") continue;
+    //
+    // Otherwise, treat it as a facet: split on commas, decode, and build sub-array.
+    const decoded = decodeURIComponent(value); 
+    const parts = decoded.split(","); 
+    if (parts.length > 0) {
+      // Build subarray like ["named_tags.occasion:Office", "named_tags.occasion:Club", ...]
+      const subFilters = parts.map(part => `${key}:${part}`);
+      facetFilters.push(subFilters);
     }
-  
-    // Encode the facetFilters back into a URL-safe string
-    // e.g. '%5B%5B%22all_sizes_in_stock_array%3AM%22%2C%22all_sizes_in_stock_array%3AL%22%5D%2C%5B%22price_range%3A10%3A25%22%5D%5D'
-    const facetFiltersStr = encodeURIComponent(JSON.stringify(facetFilters));
-    // Now build the `params` string for the first request:
-    // Insert facetFiltersStr where your facetFilters go, 
-    // plus dynamic `collectionName` in the rest of the query.
-    const firstRequestParams = 
-      `analyticsTags=%5B%22collection%22%2C%22${collectionName}%22%2C%22desktop%22%5D`
-      + `&attributesToRetrieve=%5B%22*%22%5D`
-      + `&distinct=1`
-      + `&facetFilters=${facetFiltersStr}`
-      + `&facetingAfterDistinct=true`
-      + `&facets=%5B%22all_sizes_in_stock_array%22%2C%22named_tags.bottom_length%22%2C%22named_tags.bottom_style%22%2C%22named_tags.category%22%2C%22named_tags.deals%22%2C%22named_tags.detail%22%2C%22named_tags.fabric%22%2C%22named_tags.occasion%22%2C%22named_tags.print%22%2C%22named_tags.wash%22%2C%22price_range%22%2C%22tags%22%5D`
-      + `&filters=available_markets%3Aus%20AND%20collections%3A${collectionName}%20AND%20any_variant_inventory_available%3Atrue`
-      + `&highlightPostTag=__%2Fais-highlight__`
-      + `&highlightPreTag=__ais-highlight__`
-      + `&hitsPerPage=120`
-      + `&maxValuesPerFacet=1000`
-      + `&page=${page - 1}`
-      + `&personalizationImpact=0`
-      + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`;
-  
-    // The second request (or more) can be built similarly
-    const secondRequestParams =
-      `analytics=false`
-      + `&analyticsTags=%5B%22collection%22%2C%22${collectionName}%22%2C%22desktop%22%5D`
-      + `&attributesToRetrieve=%5B%22*%22%5D`
-      + `&clickAnalytics=false`
-      + `&distinct=1`
-      + `&facetingAfterDistinct=true`
-      + `&facets=price_range`
-      + `&filters=available_markets%3Aus%20AND%20collections%3A${collectionName}%20AND%20any_variant_inventory_available%3Atrue`
-      + `&highlightPostTag=__%2Fais-highlight__`
-      + `&highlightPreTag=__ais-highlight__`
-      + `&hitsPerPage=120`
-      + `&maxValuesPerFacet=1000`
-      + `&page=${page - 1}`
-      + `&personalizationImpact=0`
-      + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`;
-  
-    // Construct final body object
-    const bodyObject = {
-      requests: [
-        {
-          indexName: "products_new_ranking_test",
-          params: firstRequestParams
-        },
-        {
-          indexName: "products_new_ranking_test",
-          params: secondRequestParams
-        }
-      ]
-    };
-  
-    // Return an object so you can do:
-    // fetch(`url?${queryString}`, { headers, body })
-    return {
-      queryString,
-      body: JSON.stringify(bodyObject)
-    };
   }
+
+  // Encode the facetFilters back into a URL-safe string
+  const facetFiltersStr = encodeURIComponent(JSON.stringify(facetFilters));
+
+  // Build the `params` string for the first request:
+  // If there's a `searchQuery`, include `&query=...`
+  const firstRequestParams = 
+    `analyticsTags=%5B%22collection%22%2C%22${collectionName}%22%2C%22desktop%22%5D`
+    + `&attributesToRetrieve=%5B%22*%22%5D`
+    + `&distinct=1`
+    + `&facetFilters=${facetFiltersStr}`
+    + `&facetingAfterDistinct=true`
+    + `&facets=%5B%22all_sizes_in_stock_array%22%2C%22named_tags.bottom_length%22%2C%22named_tags.bottom_style%22%2C%22named_tags.category%22%2C%22named_tags.deals%22%2C%22named_tags.detail%22%2C%22named_tags.fabric%22%2C%22named_tags.occasion%22%2C%22named_tags.print%22%2C%22named_tags.wash%22%2C%22price_range%22%2C%22tags%22%5D`
+    + `&filters=available_markets%3Aus%20AND%20collections%3A${collectionName}%20AND%20any_variant_inventory_available%3Atrue`
+    + `&highlightPostTag=__%2Fais-highlight__`
+    + `&highlightPreTag=__ais-highlight__`
+    + `&hitsPerPage=120`
+    + `&maxValuesPerFacet=1000`
+    + `&page=${page - 1}`
+    + `&personalizationImpact=0`
+    + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`
+    + (searchQuery ? `&query=${encodeURIComponent(searchQuery)}` : "");
+
+  // Second request (for facets, etc.) – you can include the same logic if needed
+  const secondRequestParams =
+    `analytics=false`
+    + `&analyticsTags=%5B%22collection%22%2C%22${collectionName}%22%2C%22desktop%22%5D`
+    + `&attributesToRetrieve=%5B%22*%22%5D`
+    + `&clickAnalytics=false`
+    + `&distinct=1`
+    + `&facetingAfterDistinct=true`
+    + `&facets=price_range`
+    + `&filters=available_markets%3Aus%20AND%20collections%3A${collectionName}%20AND%20any_variant_inventory_available%3Atrue`
+    + `&highlightPostTag=__%2Fais-highlight__`
+    + `&highlightPreTag=__ais-highlight__`
+    + `&hitsPerPage=120`
+    + `&maxValuesPerFacet=1000`
+    + `&page=${page - 1}`
+    + `&personalizationImpact=0`
+    + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`
+    + (searchQuery ? `&query=${encodeURIComponent(searchQuery)}` : "");
+
+  // Construct final body object
+  const bodyObject = {
+    requests: [
+      {
+        indexName: "products_new_ranking_test",
+        params: firstRequestParams
+      },
+      {
+        indexName: "products_new_ranking_test",
+        params: secondRequestParams
+      }
+    ]
+  };
+
+  // Return an object so you can do:
+  // fetch(`url?${queryString}`, { headers, body })
+  return {
+    queryString,
+    body: JSON.stringify(bodyObject)
+  };
+}
