@@ -45,55 +45,38 @@ export async function fetchShopifyCollection(queryString: string, body: string):
 }
 
 export function createAlgoliaFetchParams(urlStr: string, page: number) {
-  // Our static query parameters:
   const queryString =
     "x-algolia-agent=Algolia%20for%20JavaScript%20(4.24.0)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.73.4)%3B%20react%20(18.3.1)%3B%20react-instantsearch%20(7.12.4)%3B%20react-instantsearch-core%20(7.12.4)%3B%20JS%20Helper%20(3.22.3)"
     + "&x-algolia-api-key=188b909286594fc5b7adadce2548c56e"
     + "&x-algolia-application-id=XN5VEPVD4I";
 
-  // Parse the input URL
   const urlObj = new URL(urlStr);
-
-  // Extract path parts (e.g., "/collections/mens-jeans" => ["collections","mens-jeans"])
   const pathParts = urlObj.pathname.split("/").filter(Boolean);
-  // For example, if pathParts = ["collections","mens-pants-1"], 
-  // then collectionName is "mens-pants-1"
   const collectionName = pathParts[1] || "mens-jeans";
 
-  // We'll store the search query (if any) separately
   let searchQuery = "";
-
-  // We'll build facetFilters from *all* query params except “query”, etc.
-  // e.g. ?named_tags.occasion=Office%2CHoliday%20Party => 
-  //   [ ["named_tags.occasion:Office", "named_tags.occasion:Holiday Party"] ]
   const facetFilters: string[][] = [];
 
   // Iterate over all query params
   for (const [key, value] of urlObj.searchParams.entries()) {
     if (key === "query") {
-      // This is the search term
       searchQuery = decodeURIComponent(value);
+    } else if (key === "sort" || key === "itemsPerPage") {
+      // Bypass "sort" and "itemsPerPage" keys
       continue;
-    }
-    // If you want to skip certain param keys entirely, you can do so here:
-    // if (key === "page" || key === "collections") continue;
-    //
-    // Otherwise, treat it as a facet: split on commas, decode, and build sub-array.
-    const decoded = decodeURIComponent(value); 
-    const parts = decoded.split(","); 
-    if (parts.length > 0) {
-      // Build subarray like ["named_tags.occasion:Office", "named_tags.occasion:Club", ...]
-      const subFilters = parts.map(part => `${key}:${part}`);
-      facetFilters.push(subFilters);
+    } else {
+      const decoded = decodeURIComponent(value);
+      const parts = decoded.split(",");
+      if (parts.length > 0) {
+        const subFilters = parts.map(part => `${key}:${part}`);
+        facetFilters.push(subFilters);
+      }
     }
   }
 
-  // Encode the facetFilters back into a URL-safe string
   const facetFiltersStr = encodeURIComponent(JSON.stringify(facetFilters));
 
-  // Build the `params` string for the first request:
-  // If there's a `searchQuery`, include `&query=...`
-  const firstRequestParams = 
+  const firstRequestParams =
     `analyticsTags=%5B%22collection%22%2C%22${collectionName}%22%2C%22desktop%22%5D`
     + `&attributesToRetrieve=%5B%22*%22%5D`
     + `&distinct=1`
@@ -110,7 +93,6 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`
     + (searchQuery ? `&query=${encodeURIComponent(searchQuery)}` : "");
 
-  // Second request (for facets, etc.) – you can include the same logic if needed
   const secondRequestParams =
     `analytics=false`
     + `&analyticsTags=%5B%22collection%22%2C%22${collectionName}%22%2C%22desktop%22%5D`
@@ -129,7 +111,6 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`
     + (searchQuery ? `&query=${encodeURIComponent(searchQuery)}` : "");
 
-  // Construct final body object
   const bodyObject = {
     requests: [
       {
@@ -143,8 +124,6 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     ]
   };
 
-  // Return an object so you can do:
-  // fetch(`url?${queryString}`, { headers, body })
   return {
     queryString,
     body: JSON.stringify(bodyObject)
