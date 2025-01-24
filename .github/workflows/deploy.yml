@@ -23,7 +23,23 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@ec2-13-58-42-199.us-east-2.compute.amazonaws.com << 'EOF'
+          # Load environment variables for non-interactive sessions
+          source ~/.bashrc
+          
+          # Ensure Node.js and PM2 are installed (safety check)
+          if ! command -v node > /dev/null; then
+            curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+          fi
+          
+          if ! command -v pm2 > /dev/null; then
+            sudo npm install -g pm2
+          fi
+    
+          # Navigate to project directory
           cd /home/ubuntu/uploader_mb
+    
+          # Pull latest changes and restart with PM2
           git pull origin main
           npm install
           pm2 reload all
