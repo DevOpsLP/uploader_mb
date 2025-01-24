@@ -150,3 +150,5 @@ export async function transformHitToProduct(
 
   return { product, media }; // Return both product and media.
 }
+
+

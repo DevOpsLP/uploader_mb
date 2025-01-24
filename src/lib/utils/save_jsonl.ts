@@ -31,18 +31,21 @@ export async function saveProductAndMediaAsJsonl(
   const fileName = `${filePrefix}.jsonl`;
   const jsonlPath = filePath || path.join(process.cwd(), fileName);
 
-  // Build payload to include both "product" and "media"
-  const payload = {
+  // Build payload with "product" and "media" if media is not empty
+  const payload: Record<string, unknown> = {
     product: shopifyProduct,
-    media: media,
   };
+
+  if (media && media.length > 0) {
+    payload.media = media;
+  }
 
   // Append to JSONL file
   const jsonlString = JSON.stringify(payload) + '\n';
 
   try {
     await fs.writeFile(jsonlPath, jsonlString, { flag: 'a' });
-    console.log(`Product + Media saved to ${jsonlPath}`);
+    console.log(`Product saved to ${jsonlPath}${media.length > 0 ? ' (with media)' : ''}`);
   } catch (error: any) {
     console.error(`Failed to save Product + Media to JSONL: ${error.message}`);
     throw error;

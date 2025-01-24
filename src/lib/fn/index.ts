@@ -1,6 +1,6 @@
 import { ApiResponse } from "../../types";
 
-export async function fetchShopifyCollection(queryString: string, body: string): Promise<ApiResponse> {
+export async function fetchFNCollection(queryString: string, body: string): Promise<ApiResponse> {
   try {
     const response = await fetch(
       `https://xn5vepvd4i-dsn.algolia.net/1/indexes/*/queries?${queryString}`, 
@@ -64,6 +64,12 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     } else if (key === "sort" || key === "itemsPerPage") {
       // Bypass "sort" and "itemsPerPage" keys
       continue;
+    } else if (key === "page") {
+      // Parse and calculate the page index (convert to array indexing)
+      const parsedPage = parseInt(value, 10);
+      if (!isNaN(parsedPage) && parsedPage > 0) {
+        page = parsedPage - 1; // Convert to array indexing (0-based)
+      }
     } else {
       const decoded = decodeURIComponent(value);
       const parts = decoded.split(",");
@@ -88,7 +94,7 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     + `&highlightPreTag=__ais-highlight__`
     + `&hitsPerPage=120`
     + `&maxValuesPerFacet=1000`
-    + `&page=${page - 1}`
+    + `&page=${page}` // Use the calculated page index
     + `&personalizationImpact=0`
     + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`
     + (searchQuery ? `&query=${encodeURIComponent(searchQuery)}` : "");
@@ -106,7 +112,7 @@ export function createAlgoliaFetchParams(urlStr: string, page: number) {
     + `&highlightPreTag=__ais-highlight__`
     + `&hitsPerPage=120`
     + `&maxValuesPerFacet=1000`
-    + `&page=${page - 1}`
+    + `&page=${page}` // Use the calculated page index
     + `&personalizationImpact=0`
     + `&ruleContexts=%5B%22collection%22%2C%22${collectionName}%22%5D`
     + (searchQuery ? `&query=${encodeURIComponent(searchQuery)}` : "");

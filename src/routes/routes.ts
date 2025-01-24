@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { FormBody, ProductList, ProductWithMedia } from '../types';
-import { createAlgoliaFetchParams, fetchShopifyCollection } from '../lib/fn';
+import { createAlgoliaFetchParams, fetchFNCollection } from '../lib/fn';
 import { scrapeFashionNovaSizeChart } from '../lib/fn/get-size-chart';
-import { transformHitToProduct } from '../lib/utils/utils';
+import { delay, transformHitToProduct } from '../lib/utils/utils';
 import { getCollectionID } from '../lib/shopify/get_collections';
 import { processFile } from '../lib/shopify/proces_file';
 import { API_VERSION } from '../lib/utils/maps';
@@ -91,33 +91,57 @@ router.post(
       tienda, // Keep tienda as is (string)
       collections: [coleccion, coleccion2]
     };
-    
+
     // Use storeData when calling transformHitToProduct
     console.log('Form Data:', { url, coleccion, coleccion2, copUsd, ganancia, page });
 
     try {
       // Generate query string and body using the provided function
-      const { queryString, body } = createAlgoliaFetchParams(url, page);
+      // Wrap the logic in a loop to fetch all pages
+      let allHits: any[] = []; // Collect hits from all pages
 
-      const response = await fetchShopifyCollection(queryString, body);
+      for (let currentPage = 1; currentPage <= page; currentPage++) {
+        // Generate query string and body for the current page
+        const { queryString, body } = createAlgoliaFetchParams(url, currentPage);
 
-      // Get the first item from "results" in the response
-      const firstResult = response?.results?.[0];
+        // Fetch the data for the current page
+        const response = await fetchFNCollection(queryString, body);
 
-      if (!firstResult) {
-        throw new Error('No results found in the Algolia response.');
+        // Get the first item from "results" in the response
+        const firstResult = response?.results?.[0];
+
+        if (!firstResult) {
+          throw new Error(`No results found for page ${currentPage} in the Algolia response.`);
+        }
+
+        // Extract the hits array for the current page
+        const pageHits = firstResult?.hits;
+
+        if (!pageHits || pageHits.length === 0) {
+          console.warn(`No hits found for page ${currentPage}. Skipping.`);
+          continue; // Skip this iteration if no hits are found
+        }
+
+        // Add the hits from this page to the allHits array
+        allHits = allHits.concat(pageHits);
       }
 
-      // Extract the hits array
-      const hits = firstResult?.hits;
-      const sizeChart = await scrapeFashionNovaSizeChart(firstResult.hits[0].handle);
-      if (!hits || hits.length === 0) {
-        throw new Error('No hits found in the first result.');
+      // Proceed with the existing flow
+      if (allHits.length === 0) {
+        throw new Error('No hits found in any of the pages.');
       }
-      // Transform hits into ProductList
+
+      // Use the first hit for the size chart
+      const sizeChart = await scrapeFashionNovaSizeChart(allHits[0].handle);
+
+
+
+      // Transform hits into ProductList with 1-second delay
       const productMediaList: ProductWithMedia[] = (
         await Promise.all(
-          hits.map(async (hit) => {
+          allHits.map(async (hit) => {
+            // Add a 1-second delay before processing each hit
+            await delay(1000); // 1-second delay
             return transformHitToProduct(hit, sizeChart, storeData);
           })
         )
@@ -125,6 +149,7 @@ router.post(
         (pm) => Object.keys(pm.product).length > 0 // Filter out empty product objects
       );
 
+      // The `productMediaList` now contains all products from all pages
       for (const { product, media } of productMediaList) {
         // Now pass all three: product, media, and tienda
         await saveProductAndMediaAsJsonl(product, media, tienda);
@@ -138,7 +163,7 @@ router.post(
       } else {
         cleanJsonlFile(tienda)
         res.status(500).json({ message: "File processing failed.", success: false });
-      }  
+      }
     } catch (error: any) {
       console.error('Error during Algolia fetch or processing:', error);
       cleanJsonlFile(tienda)
