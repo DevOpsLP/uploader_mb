@@ -45,6 +45,7 @@ export async function saveProductAndMediaAsJsonl(
 
   try {
     await fs.writeFile(jsonlPath, jsonlString, { flag: 'a' });
+    
     console.log(`Product saved to ${jsonlPath}${media.length > 0 ? ' (with media)' : ''}`);
   } catch (error: any) {
     console.error(`Failed to save Product + Media to JSONL: ${error.message}`);
