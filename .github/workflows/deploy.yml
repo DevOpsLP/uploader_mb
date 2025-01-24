@@ -23,7 +23,7 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@ec2-13-58-42-199.us-east-2.compute.amazonaws.com << 'EOF'
-          cd /path/to/your/project
+          cd /home/ubuntu/uploader_mb
           git pull origin main
           npm install
           pm2 reload all
